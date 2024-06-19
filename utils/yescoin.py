@@ -33,7 +33,10 @@ class YesCoin:
             api_hash=config.API_HASH,
             workdir=config.WORKDIR,
             proxy=proxy,
-            lang_code='ru'
+            lang_code='en',
+            app_version="Telegram 8.9.3",
+            system_version="iOS 15.4",
+            device_model="iPhone 13 Pro Max",
         )
 
         headers = {'User-Agent': UserAgent(os='android').random}
@@ -132,7 +135,7 @@ class YesCoin:
 
         return squad_link
 
-    async def join_squad(self, link: str = '@ApeCryptor'):
+    async def join_squad(self, link: str = '@Yescoin'):
         resp = await self.session.post('https://api.yescoin.gold/squad/joinSquad', json={'squadTgLink': link})
         return (await resp.json()).get('data').get('squadInfo').get("squadTitle")
 
@@ -160,7 +163,7 @@ class YesCoin:
         resp = await self.session.post('https://api.yescoin.gold/user/login', json=json_data)
 
         self.session.headers['token'] = (await resp.json()).get('data').get('token')
-        await self.session.post(f'https://api.yescoin.gold/invite/claimGiftBox?packId={5+2}2RLjp')
+        await self.session.post(f'https://api.yescoin.gold/invite/claimGiftBox?packId=DUjFMC')
         return True
 
     async def get_tg_web_data(self):
